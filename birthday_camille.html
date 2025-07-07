@@ -21,11 +21,6 @@
       margin-bottom: 10px;
     }
 
-    img {
-      max-width: 300px;
-      margin: 20px 0;
-    }
-
     button {
       padding: 10px 20px;
       font-size: 1.2em;
@@ -34,6 +29,7 @@
       color: white;
       border-radius: 8px;
       cursor: pointer;
+      margin-top: 20px;
     }
 
     button:hover {
@@ -53,34 +49,13 @@
       padding: 20px;
       border-radius: 10px;
     }
-
-    /* Style for SaJa Boys image section */
-    #gift-list .saja-boys {
-      margin-top: 30px;
-      text-align: center;
-    }
-    #gift-list .saja-boys img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    #gift-list .saja-boys p {
-      font-weight: bold;
-      margin-top: 10px;
-      font-size: 1.1em;
-      color: #444;
-    }
   </style>
 </head>
 <body>
 
   <h1>Happy Birthday Camille!</h1>
 
-  <img src="https://cdn.pixabay.com/photo/2014/12/21/23/28/cake-575300_1280.png" alt="Birthday Cake">
-
-  <br>
-  <button onclick="revealGift()">Reveal Your Gift 🎉</button>
+  <button id="revealBtn">Reveal Your Gift 🎉</button>
 
   <div id="gift-list">
     <p><strong>Dear Camille,</strong></p>
@@ -88,19 +63,12 @@
     <p><strong>Starting time:</strong> 4:00 PM</p>
     <p>Dinner of choice will be <strong>Shoguns</strong> 🍣🍜</p>
     <p>Please be ready to spend the afternoon walking in the heat, so dress appropriately! 👟☀️</p>
-
-    <div class="saja-boys">
-      <img 
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Stray_Kids_in_2019.jpg/440px-Stray_Kids_in_2019.jpg" 
-        alt="SaJa Boys" 
-      />
-      <p>SaJa Boys say Happy Birthday, Camille! 🎉🎂</p>
-    </div>
   </div>
 
-  <!-- 🎉 Confetti Script -->
+  <!-- Confetti Script -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
+    // Run confetti on page load
     window.onload = () => {
       confetti({
         particleCount: 150,
@@ -116,12 +84,19 @@
       }, 1000);
     };
 
-    function revealGift() {
-      document.getElementById('gift-list').style.display = 'block';
-    }
-  </script>
+    // Reveal gift button toggles gift message visibility
+    const btn = document.getElementById('revealBtn');
+    const giftList = document.getElementById('gift-list');
 
+    btn.addEventListener('click', () => {
+      if (giftList.style.display === 'none' || giftList.style.display === '') {
+        giftList.style.display = 'block';
+        btn.textContent = 'Hide Gift 🎁';
+      } else {
+        giftList.style.display = 'none';
+        btn.textContent = 'Reveal Your Gift 🎉';
+      }
+    });
+  </script>
 </body>
 </html>
-
-
