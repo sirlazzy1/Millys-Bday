@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday Camille!</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fff0f5;
+      text-align: center;
+      padding: 30px;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 3em;
+      background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    img {
+      max-width: 300px;
+      margin: 20px 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      border: none;
+      background-color: #ff66b2;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e60073;
+    }
+
+    #gift-list {
+      display: none;
+      margin-top: 30px;
+      font-size: 1.1em;
+      color: #333;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+      background-color: #ffe6f0;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    /* Style for SaJa Boys image section */
+    #gift-list .saja-boys {
+      margin-top: 30px;
+      text-align: center;
+    }
+    #gift-list .saja-boys img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    #gift-list .saja-boys p {
+      font-weight: bold;
+      margin-top: 10px;
+      font-size: 1.1em;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Happy Birthday Camille!</h1>
+
+  <img src="https://cdn.pixabay.com/photo/2014/12/21/23/28/cake-575300_1280.png" alt="Birthday Cake">
+
+  <br>
+  <button onclick="revealGift()">Reveal Your Gift 🎉</button>
+
+  <div id="gift-list">
+    <p><strong>Dear Camille,</strong></p>
+    <p>Happy Birthday! You are invited to an <strong>all-out shopping spree</strong> on <strong>7/12/25</strong>.</p>
+    <p><strong>Starting time:</strong> 4:00 PM</p>
+    <p>Dinner of choice will be <strong>Shoguns</strong> 🍣🍜</p>
+    <p>Please be ready to spend the afternoon walking in the heat, so dress appropriately! 👟☀️</p>
+
+    <div class="saja-boys">
+      <img 
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Stray_Kids_in_2019.jpg/440px-Stray_Kids_in_2019.jpg" 
+        alt="SaJa Boys" 
+      />
+      <p>SaJa Boys say Happy Birthday, Camille! 🎉🎂</p>
+    </div>
+  </div>
+
+  <!-- 🎉 Confetti Script -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    window.onload = () => {
+      confetti({
+        particleCount: 150,
+        spread: 100,
+        origin: { y: 0.6 },
+      });
+      setTimeout(() => {
+        confetti({
+          particleCount: 100,
+          spread: 120,
+          origin: { y: 0.6 },
+        });
+      }, 1000);
+    };
+
+    function revealGift() {
+      document.getElementById('gift-list').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
+
+
