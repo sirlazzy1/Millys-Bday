@@ -49,6 +49,15 @@
       padding: 20px;
       border-radius: 10px;
     }
+
+    video {
+      max-width: 100%;
+      height: auto;
+      display: none;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
   </style>
 </head>
 <body>
@@ -58,45 +67,73 @@
   <button id="revealBtn">Reveal Your Gift 🎉</button>
 
   <div id="gift-list">
+    <video id="birthdayVideo" width="640" controls>
+      <source src="video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
     <p><strong>Dear Camille,</strong></p>
     <p>Happy Birthday! You are invited to an <strong>all-out shopping spree</strong> on <strong>7/12/25</strong>.</p>
     <p><strong>Starting time:</strong> 4:00 PM</p>
     <p>Dinner of choice will be <strong>Shoguns</strong> 🍣🍜</p>
-    <p>Please be ready to spend the afternoon walking in the heat, so dress appropriately! 👟☀️</p>
+    <p>Please be ready to spend the afternoon walking in the heat, so dress appropriately! 👣☀️</p>
   </div>
 
   <!-- Confetti Script -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
-    // Run confetti on page load
-    window.onload = () => {
-      confetti({
-        particleCount: 150,
-        spread: 100,
-        origin: { y: 0.6 },
-      });
-      setTimeout(() => {
-        confetti({
-          particleCount: 100,
-          spread: 120,
-          origin: { y: 0.6 },
-        });
-      }, 1000);
-    };
-
-    // Reveal gift button toggles gift message visibility
     const btn = document.getElementById('revealBtn');
     const giftList = document.getElementById('gift-list');
+    const video = document.getElementById('birthdayVideo');
+
+    // Continuous background confetti
+    let confettiInterval = setInterval(() => {
+      confetti({
+        particleCount: 10,
+        spread: 60,
+        origin: { x: Math.random(), y: Math.random() / 2 }
+      });
+    }, 300);
 
     btn.addEventListener('click', () => {
-      if (giftList.style.display === 'none' || giftList.style.display === '') {
-        giftList.style.display = 'block';
-        btn.textContent = 'Hide Gift 🎁';
+      const isVisible = giftList.style.display === 'block';
+
+      giftList.style.display = isVisible ? 'none' : 'block';
+      video.style.display = isVisible ? 'none' : 'block';
+
+      if (!isVisible) {
+        video.currentTime = 0;
+        video.play();
+        btn.textContent = 'Hide Gift 🏰';
+
+        // Stop continuous confetti
+        clearInterval(confettiInterval);
+
+        // Exploding confetti burst
+        for (let i = 0; i < 5; i++) {
+          setTimeout(() => {
+            confetti({
+              particleCount: 100,
+              spread: 120,
+              origin: { y: 0.6 },
+            });
+          }, i * 200);
+        }
       } else {
-        giftList.style.display = 'none';
+        video.pause();
         btn.textContent = 'Reveal Your Gift 🎉';
+
+        // Restart continuous confetti
+        confettiInterval = setInterval(() => {
+          confetti({
+            particleCount: 10,
+            spread: 60,
+            origin: { x: Math.random(), y: Math.random() / 2 }
+          });
+        }, 300);
       }
     });
   </script>
+
 </body>
 </html>
