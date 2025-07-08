@@ -53,7 +53,7 @@
     video {
       max-width: 100%;
       height: auto;
-      display: none;
+      display: block;
       margin-top: 20px;
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -66,11 +66,12 @@
 
   <button id="revealBtn">Reveal Your Gift 🎉</button>
 
-  <video id="birthdayVideo" width="640" controls playsinline webkit-playsinline>
-  <source src="https://raw.githubusercontent.com/sirlazzy1/Millys-Bday/main/video.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
+  <!-- Gift Content (hidden initially) -->
+  <div id="gift-list">
+    <video id="birthdayVideo" width="640" controls playsinline webkit-playsinline>
+      <source src="https://raw.githubusercontent.com/sirlazzy1/Millys-Bday/main/video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
 
     <p><strong>Dear Camille,</strong></p>
     <p>Happy Birthday! You are invited to an <strong>all-out shopping spree</strong> on <strong>7/12/25</strong>.</p>
@@ -99,7 +100,6 @@
       const isVisible = giftList.style.display === 'block';
 
       giftList.style.display = isVisible ? 'none' : 'block';
-      video.style.display = isVisible ? 'none' : 'block';
 
       if (!isVisible) {
         video.currentTime = 0;
@@ -109,7 +109,7 @@
         // Stop continuous confetti
         clearInterval(confettiInterval);
 
-        // Exploding confetti burst
+        // Confetti burst
         for (let i = 0; i < 5; i++) {
           setTimeout(() => {
             confetti({
@@ -137,3 +137,4 @@
 
 </body>
 </html>
+
